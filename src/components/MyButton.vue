@@ -1,6 +1,5 @@
 <template>
-  <slot></slot>
-  <button :class="classObject" @click="onClick">
+  <button :class="classObj" @click="onClick" @keyup.enter="onClick">
     {{ typeof innerText === "string" ? innerText.toUpperCase() : null }}
     <template v-if="Array.isArray(innerText)">
       <span
@@ -38,8 +37,11 @@ export default defineComponent({
     };
   },
   computed: {
-    classObject() {
-      return {};
+    classObj() {
+      return {
+        "normal-button": !Array.isArray(this.innerText),
+        "toggle-button": Array.isArray(this.innerText),
+      };
     },
   },
   methods: {
@@ -58,6 +60,7 @@ export default defineComponent({
       } else {
         this.$emit("toggleChanged");
       }
+      console.log("button pressed");
     },
   },
 });
@@ -66,17 +69,16 @@ export default defineComponent({
 <style scoped lang="scss">
 button {
   border: 1px solid #eee;
-  background-color: #55555577;
   cursor: pointer;
   font-size: 15pt;
-  padding: 1em 0 1em 0;
   border-radius: 5px;
   margin: 10px;
   color: white;
+}
 
-  .selected {
-    background-color: #f65261;
-  }
+.toggle-button {
+  padding: 1em 0 1em 0;
+  background-color: #55555577;
 
   span {
     padding: 1em;
@@ -87,5 +89,14 @@ button {
       border-radius: 0 5px 5px 0;
     }
   }
+}
+
+.selected,
+.normal-button {
+  background-color: #f65261;
+}
+
+.normal-button {
+  padding: 0.5em 2em;
 }
 </style>
