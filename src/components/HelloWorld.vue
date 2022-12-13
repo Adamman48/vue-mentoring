@@ -107,6 +107,9 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "HelloWorld",
+  components: {
+    // list of imported components we want to use
+  },
   props: {
     msg: String,
   },
