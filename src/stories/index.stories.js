@@ -1,29 +1,20 @@
 import { action } from "@storybook/addon-actions";
-import { linkTo } from "@storybook/addon-links";
 
 import MyButton from "../components/MyButton.vue";
 
 export default {
   title: "Button",
+  componet: MyButton,
 };
 
-export const withText = () => ({
+export const normalButton = () => ({
   components: { MyButton },
-  template: '<my-button @click="action">Hello Button</my-button>',
+  template: '<my-button @click="action" innerText="search"></my-button>',
   methods: { action: action("clicked") },
 });
 
-export const withJSX = () => ({
+export const toggleButton = () => ({
   render() {
-    return (
-      <MyButton onClick={linkTo("Button", "With Some Emoji")}>
-        With JSX
-      </MyButton>
-    );
+    return <MyButton innerText={["title", "genre"]} />;
   },
-});
-
-export const withSomeEmoji = () => ({
-  components: { MyButton },
-  template: "<my-button>😀 😎 👍 💯</my-button>",
 });

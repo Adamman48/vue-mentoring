@@ -1,5 +1,5 @@
 <template>
-  <button :class="classObj" @click="onClick" @keyup.enter="onClick">
+  <button :class="classObj" @click="onClick">
     {{ typeof innerText === "string" ? innerText.toUpperCase() : null }}
     <template v-if="Array.isArray(innerText)">
       <span
@@ -33,7 +33,9 @@ export default defineComponent({
   },
   data() {
     return {
-      selected: this.innerText[0],
+      selected: Array.isArray(this.innerText)
+        ? this.innerText[0]
+        : this.innerText,
     };
   },
   computed: {
