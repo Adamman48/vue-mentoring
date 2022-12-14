@@ -9,6 +9,8 @@ export const mockMovieDataList: MovieItemInterface[] = [
     synopsis:
       "Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee and two droids to save the galaxy from the Empire's world-destroying battle station, while also attempting to rescue Princess Leia from the mysterious Darth Vader.",
     tag: "The movie that changed cinema",
+    runningTimeInMins: 121,
+    rating: 8.6,
   } /* ,
   {
     genre: "SciFi & Adventure",

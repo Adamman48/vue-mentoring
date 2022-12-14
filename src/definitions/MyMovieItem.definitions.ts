@@ -5,4 +5,6 @@ export interface MovieItemInterface {
   genre: string;
   synopsis: string;
   tag: string;
+  runningTimeInMins: number;
+  rating: number;
 }
