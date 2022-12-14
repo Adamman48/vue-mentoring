@@ -10,6 +10,7 @@
 </template>
 
 <script lang="ts">
+import { imageUtils } from "@/mixins/imageUtils.mixin";
 import { defineComponent, PropType } from "vue";
 import { MovieItemInterface } from "../definitions/MyMovieItem.definitions";
 
@@ -21,11 +22,7 @@ export default defineComponent({
       required: true,
     },
   },
-  methods: {
-    getImgUrl(url: string) {
-      return require(`../assets/${url}`);
-    },
-  },
+  mixins: [imageUtils],
 });
 </script>
 

@@ -37,12 +37,12 @@ import { SizeEnum } from "@/definitions/MyLogo.definitions";
 import { defineComponent } from "vue";
 
 import { mockMovieDataList } from "../../mocks/movieData.mock";
+import { enums } from "@/mixins/enums.mixin";
 
 export default defineComponent({
   name: "MainPage",
   data() {
     return {
-      SizeEnum,
       movieDataList: mockMovieDataList,
     };
   },
@@ -52,6 +52,7 @@ export default defineComponent({
     MyLogo,
     MyMovieCard,
   },
+  mixins: [enums],
 });
 </script>
 
