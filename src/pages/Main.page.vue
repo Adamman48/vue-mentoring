@@ -1,20 +1,25 @@
 <template>
-  <MyLogo :size="SizeEnum.S" />
-  <MySearch />
-  <div class="search-toggle">
-    <span>SEARCH BY</span>
-    <MyButton :innerText="['title', 'genre']" />
-  </div>
-  <div class="results-header">
-    <span class="results-total">n movie found</span>
-    <span class="results-toggle">
-      <span>SORT BY</span>
-      <MyButton :innerText="['release date', 'rating']" />
-    </span>
-  </div>
-  <div>
+  <header>
+    <MyLogo :size="SizeEnum.S" />
+    <MySearch />
+    <div class="search-toggle">
+      <span>SEARCH BY</span>
+      <MyButton :innerText="['title', 'genre']" />
+    </div>
+  </header>
+  <section class="results-section">
+    <div class="results-header">
+      <span class="results-total">n movie found</span>
+      <span class="results-toggle">
+        <span>SORT BY</span>
+        <MyButton :innerText="['release date', 'rating']" />
+      </span>
+    </div>
+    <div class="results-main"></div>
+  </section>
+  <footer>
     <MyLogo :size="SizeEnum.XS" />
-  </div>
+  </footer>
 </template>
 
 <script lang="ts">
