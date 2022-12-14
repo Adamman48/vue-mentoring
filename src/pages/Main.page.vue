@@ -1,6 +1,9 @@
 <template>
+  <div class="backdrop"></div>
+  <div class="background"></div>
   <header>
     <MyLogo :size="SizeEnum.S" />
+    <span class="page-title">FIND YOUR MOVIE</span>
     <MySearch />
     <div class="search-toggle">
       <span>SEARCH BY</span>
@@ -60,14 +63,59 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
+.backdrop {
+  height: 45vh;
+  width: 100%;
+  position: absolute;
+  background: black;
+  z-index: 2;
+  opacity: 50%;
+}
+
+.background {
+  background-image: url("../assets/headerBackground.png");
+  position: relative;
+  z-index: 1;
+  background-size: cover;
+  height: 45vh;
+  filter: blur(2px);
+}
+
+header {
+  position: absolute;
+  top: 0;
+  z-index: 3;
+  width: 100%;
+  height: 45vh;
+
+  .logo-wrapper {
+    text-align: left;
+    margin-bottom: 5%;
+    padding: 2% 0 0 2%;
+  }
+
+  .page-title {
+    color: white;
+    font-family: system-ui;
+    font-size: 2.5em;
+    font-weight: 200;
+    display: block;
+    text-align: left;
+    margin: 0 0 1% 6%;
+  }
+}
+
 .results-section {
   height: 90vh;
   /* should be removed later */
   display: inline;
 }
+
 .search-toggle {
   font-size: 1.25em;
   font-weight: 500;
+  text-align: left;
+  margin-left: 6%;
 }
 
 .results-header {

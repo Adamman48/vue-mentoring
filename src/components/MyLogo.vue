@@ -1,5 +1,5 @@
 <template>
-  <div :class="`size-${size}`">
+  <div :class="`size-${size} logo-wrapper`">
     <span>netflix</span>
     <span>roulette</span>
   </div>

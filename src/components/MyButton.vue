@@ -71,7 +71,7 @@ export default defineComponent({
 
 <style scoped lang="scss">
 button {
-  border: 1px solid #eee;
+  border: none;
   cursor: pointer;
   font-size: inherit;
   border-radius: 5px;

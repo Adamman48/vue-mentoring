@@ -1,6 +1,6 @@
 <template>
   <div>
-    <input type="text" placeholder="Type here..." />
+    <input type="text" placeholder="Search" />
     <MyButton :innerText="'search'" />
   </div>
 </template>
@@ -24,7 +24,7 @@ div {
 
   input {
     width: 70%;
-    background-color: #2323238b;
+    background-color: #232323c8;
     font-size: inherit;
     color: white;
     padding: 0.6em;
@@ -34,7 +34,7 @@ div {
   }
 
   ::placeholder {
-    color: white;
+    color: #555555;
     opacity: 1;
   }
 
