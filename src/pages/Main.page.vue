@@ -15,7 +15,13 @@
         <MyButton :innerText="['release date', 'rating']" />
       </span>
     </div>
-    <div class="results-main"></div>
+    <div class="results-main">
+      <MyMovieItem
+        v-for="item in movieDataList"
+        :movieData="item"
+        :key="`movie-${item.title}`"
+      />
+    </div>
   </section>
   <footer>
     <MyLogo :size="SizeEnum.XS" />
@@ -23,23 +29,28 @@
 </template>
 
 <script lang="ts">
+import MyMovieItem from "@/components/MyMovieItem.vue";
 import MyButton from "@/components/MyButton.vue";
 import MyLogo from "@/components/MyLogo.vue";
 import MySearch from "@/components/MySearch.vue";
 import { SizeEnum } from "@/definitions/MyLogo.definitions";
 import { defineComponent } from "vue";
 
+import { mockMovieDataList } from "../../mocks/movieData.mock";
+
 export default defineComponent({
   name: "MainPage",
   data() {
     return {
-      SizeEnum: SizeEnum,
+      SizeEnum,
+      movieDataList: mockMovieDataList,
     };
   },
   components: {
     MyButton,
     MySearch,
     MyLogo,
+    MyMovieItem,
   },
 });
 </script>
