@@ -1,5 +1,24 @@
 <template>
-  <div class="wrapper"></div>
+  <div class="wrapper">
+    <img
+      :src="getImgUrl(movieData.imgUrl)"
+      :alt="`${movieData.title} poster image`"
+    />
+    <section class="info-section">
+      <header>
+        <div>
+          <span class="title">{{ movieData.title }}</span>
+          <span class="rating">{{ movieData.rating }}</span>
+        </div>
+        <span class="tag">{{ movieData.tag }}</span>
+      </header>
+      <div class="numbers">
+        <span class="release-date">{{ movieData.relDate }}</span>
+        <span class="running-time">{{ movieData.runningTimeInMins }} min</span>
+      </div>
+      <span class="synopsis">{{ movieData.synopsis }}</span>
+    </section>
+  </div>
 </template>
 
 <script lang="ts">

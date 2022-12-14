@@ -26,6 +26,7 @@
   <footer>
     <MyLogo :size="SizeEnum.XS" />
   </footer>
+  <MyMovieDisplay :movieData="movieDataList[0]" />
 </template>
 
 <script lang="ts">
@@ -38,19 +39,21 @@ import { defineComponent } from "vue";
 
 import { mockMovieDataList } from "../../mocks/movieData.mock";
 import { enums } from "@/mixins/enums.mixin";
+import MyMovieDisplay from "@/components/MyMovieDisplay.vue";
 
 export default defineComponent({
-  name: "MainPage",
-  data() {
-    return {
-      movieDataList: mockMovieDataList,
-    };
-  },
+  name: "main-page",
   components: {
     MyButton,
     MySearch,
     MyLogo,
     MyMovieCard,
+    MyMovieDisplay,
+  },
+  data() {
+    return {
+      movieDataList: mockMovieDataList,
+    };
   },
   mixins: [enums],
 });
