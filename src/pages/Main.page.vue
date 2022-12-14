@@ -56,6 +56,9 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
+.results-section {
+  height: 90vh;
+}
 .search-toggle {
   font-size: 1.25em;
   font-weight: 500;
