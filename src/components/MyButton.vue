@@ -21,14 +21,15 @@ export default defineComponent({
     innerText: {
       type: [String, Array],
       required: true,
-      validator(value) {
+      // ? USED TO WORK NOW IT DOESN'T WTF ?
+      /*       validator(value) {
         const isString = typeof value === "string";
         const isTwoMemberStringList =
           Array.isArray(value) &&
           value.every((item) => typeof item === "string") &&
           value.length === 2;
         return isString || isTwoMemberStringList;
-      },
+      }, */
     },
   },
   data() {
