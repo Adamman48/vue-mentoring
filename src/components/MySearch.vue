@@ -20,13 +20,14 @@ export default defineComponent({
 <style scoped lang="scss">
 div {
   width: 100%;
+  font-size: 1.25em;
 
   input {
     width: 70%;
     background-color: #2323238b;
+    font-size: inherit;
     color: white;
     padding: 0.6em;
-    font-size: 15pt;
     outline: none;
     border: none;
     border-radius: 0.2em;

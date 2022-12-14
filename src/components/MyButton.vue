@@ -73,7 +73,7 @@ export default defineComponent({
 button {
   border: 1px solid #eee;
   cursor: pointer;
-  font-size: 15pt;
+  font-size: inherit;
   border-radius: 5px;
   margin: 10px;
   color: white;
