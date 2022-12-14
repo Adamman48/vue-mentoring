@@ -50,8 +50,8 @@ export default defineComponent({
 
   .info-section {
     display: inline-block;
-    width: 65vw;
-    margin: 5% 0;
+    width: 60vw;
+    margin: 5%;
   }
 
   header {

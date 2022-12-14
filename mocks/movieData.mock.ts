@@ -11,14 +11,17 @@ export const mockMovieDataList: MovieItemInterface[] = [
     tag: "The movie that changed cinema",
     runningTimeInMins: 121,
     rating: 8.6,
-  } /* ,
+  },
   {
     genre: "SciFi & Adventure",
     imgUrl: "tesb.png",
     relDate: 1980,
     title: "The Empire Strikes Back",
-    synopsis: "placeholder",
-    tag: "placeholder"
+    synopsis:
+      "After the Rebels are brutally overpowered by the Empire on the ice planet Hoth, Luke Skywalker begins Jedi training with Yoda, while his friends are pursued across the galaxy by Darth Vader and bounty hunter Boba Fett.",
+    tag: "Best Star Wars movie ever",
+    runningTimeInMins: 124,
+    rating: 8.7,
   },
   {
     genre: "SciFi & Adventure",
@@ -26,7 +29,9 @@ export const mockMovieDataList: MovieItemInterface[] = [
     relDate: 1983,
     title: "Return of the Jedi",
     synopsis: "placeholder",
-    tag: "placeholder"
+    tag: "placeholder",
+    runningTimeInMins: 121,
+    rating: 8.6,
   },
   {
     genre: "SciFi & Adventure",
@@ -34,7 +39,9 @@ export const mockMovieDataList: MovieItemInterface[] = [
     relDate: 1999,
     title: "The Phantom Menace",
     synopsis: "placeholder",
-    tag: "placeholder"
+    tag: "placeholder",
+    runningTimeInMins: 121,
+    rating: 8.6,
   },
   {
     genre: "SciFi & Adventure",
@@ -42,7 +49,9 @@ export const mockMovieDataList: MovieItemInterface[] = [
     relDate: 2002,
     title: "Attack of the Clones",
     synopsis: "placeholder",
-    tag: "placeholder"
+    tag: "placeholder",
+    runningTimeInMins: 121,
+    rating: 8.6,
   },
   {
     genre: "SciFi & Adventure",
@@ -50,6 +59,8 @@ export const mockMovieDataList: MovieItemInterface[] = [
     relDate: 2005,
     title: "Revenge of the Sith",
     synopsis: "placeholder",
-    tag: "placeholder"
-  }, */,
+    tag: "placeholder",
+    runningTimeInMins: 121,
+    rating: 8.6,
+  },
 ];

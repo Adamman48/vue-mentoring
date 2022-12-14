@@ -62,6 +62,8 @@ export default defineComponent({
 <style scoped lang="scss">
 .results-section {
   height: 90vh;
+  /* should be removed later */
+  display: inline;
 }
 .search-toggle {
   font-size: 1.25em;
