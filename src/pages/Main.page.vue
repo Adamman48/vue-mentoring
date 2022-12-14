@@ -9,7 +9,7 @@
   </header>
   <section class="results-section">
     <div class="results-header">
-      <span class="results-total">n movie found</span>
+      <span class="results-total">{{ movieDataList.length }} movie found</span>
       <span class="results-toggle">
         <span>SORT BY</span>
         <MyButton :innerText="['release date', 'rating']" />

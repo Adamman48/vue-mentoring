@@ -3,4 +3,6 @@ export interface MovieItemInterface {
   title: string;
   relDate: number;
   genre: string;
+  synopsis: string;
+  tag: string;
 }
