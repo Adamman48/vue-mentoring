@@ -16,7 +16,7 @@
       </span>
     </div>
     <div class="results-main">
-      <MyMovieItem
+      <MyMovieCard
         v-for="item in movieDataList"
         :movieData="item"
         :key="`movie-${item.title}`"
@@ -29,7 +29,7 @@
 </template>
 
 <script lang="ts">
-import MyMovieItem from "@/components/MyMovieItem.vue";
+import MyMovieCard from "@/components/MyMovieCard.vue";
 import MyButton from "@/components/MyButton.vue";
 import MyLogo from "@/components/MyLogo.vue";
 import MySearch from "@/components/MySearch.vue";
@@ -50,7 +50,7 @@ export default defineComponent({
     MyButton,
     MySearch,
     MyLogo,
-    MyMovieItem,
+    MyMovieCard,
   },
 });
 </script>

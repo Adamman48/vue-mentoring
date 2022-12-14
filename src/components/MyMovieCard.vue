@@ -14,7 +14,7 @@ import { defineComponent, PropType } from "vue";
 import { MovieItemInterface } from "../definitions/MyMovieItem.definitions";
 
 export default defineComponent({
-  name: "my-movie-item",
+  name: "my-movie-card",
   props: {
     movieData: {
       type: Object as PropType<MovieItemInterface>,
