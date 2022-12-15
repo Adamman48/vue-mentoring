@@ -7,7 +7,10 @@
     <MySearch @search-triggered="handleSearchChange" />
     <div class="search-toggle">
       <span>SEARCH BY</span>
-      <MyButton :innerText="[SearchToggleEnum.TITLE, SearchToggleEnum.GENRE]" />
+      <MyButton
+        :innerText="[SearchToggleEnum.TITLE, SearchToggleEnum.GENRES]"
+        @toggle-changed="handleSearchByToggleChange"
+      />
     </div>
   </header>
   <div class="results-header">
@@ -16,7 +19,10 @@
     >
     <span class="results-toggle">
       <span>SORT BY</span>
-      <MyButton :innerText="[SortToggleEnum.REL_DATE, SortToggleEnum.RATING]" />
+      <MyButton
+        :innerText="[SortToggleEnum.REL_DATE, SortToggleEnum.RATING]"
+        @toggle-changed="handleSortByToggleChange"
+      />
     </span>
   </div>
   <section class="results-section">
@@ -73,11 +79,20 @@ export default defineComponent({
       let resultList = [];
 
       if (this.searchString) {
-        resultList = this.movieDataList.filter((movieItem) =>
-          movieItem.title
-            .toLowerCase()
-            .includes(this.searchString.toLowerCase())
-        );
+        resultList = this.movieDataList.filter((movieItem) => {
+          if (this.searchBy === SearchToggleEnum.TITLE) {
+            return movieItem[this.searchBy]
+              .toLowerCase()
+              .includes(this.searchString.toLowerCase());
+          } else {
+            const filteredGenreList = movieItem[this.searchBy].filter(
+              (genreItem) => genreItem.includes(this.searchString.toLowerCase())
+            );
+            return movieItem[this.searchBy].some((genreItem) =>
+              filteredGenreList.includes(genreItem)
+            );
+          }
+        });
       } else {
         resultList = this.movieDataList;
       }
@@ -87,6 +102,12 @@ export default defineComponent({
   methods: {
     handleSearchChange(searchInput: string) {
       this.searchString = searchInput;
+    },
+    handleSearchByToggleChange(toggledValue: SearchToggleEnum) {
+      this.searchBy = toggledValue;
+    },
+    handleSortByToggleChange(toggledValue: SortToggleEnum) {
+      this.sortBy = toggledValue;
     },
   },
   mixins: [enums],

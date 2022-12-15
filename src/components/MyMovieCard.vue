@@ -4,7 +4,7 @@
     <div class="details">
       <span class="title">{{ movieData.title }}</span>
       <span class="release-date">{{ movieData.relDate }}</span>
-      <span class="genre">{{ movieData.genre.join(", ") }}</span>
+      <span class="genre">{{ genresString }}</span>
     </div>
   </div>
 </template>
@@ -20,6 +20,14 @@ export default defineComponent({
     movieData: {
       type: Object as PropType<MovieItemInterface>,
       required: true,
+    },
+  },
+  computed: {
+    genresString(): string {
+      const transformedGenreList = this.movieData.genres.map(
+        (genre: string) => genre.charAt(0).toUpperCase() + genre.slice(1)
+      );
+      return transformedGenreList.join(", ");
     },
   },
   mixins: [imageUtils],
