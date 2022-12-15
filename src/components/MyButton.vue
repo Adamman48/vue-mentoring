@@ -81,7 +81,7 @@ button {
 
 .toggle-button {
   padding: 0.4em 0;
-  background-color: #555555c0;
+  background-color: #232323b3;
 
   span {
     padding: 0.4em 1.5em;
