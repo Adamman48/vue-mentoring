@@ -25,13 +25,13 @@
     <MyMovieDisplay
       v-else
       :movieData="
-        filteredMovieDataList.find((item) => item.id === selectedMovie)
+        filteredAndSortedMovieDataList.find((item) => item.id === selectedMovie)
       "
     />
   </header>
   <div class="results-header">
     <span class="results-total"
-      >{{ filteredMovieDataList.length }} movie found</span
+      >{{ filteredAndSortedMovieDataList.length }} movie found</span
     >
     <span class="results-toggle">
       <span>SORT BY</span>
@@ -45,17 +45,17 @@
     <div
       class="results-main"
       :style="{
-        display: filteredMovieDataList.length ? 'grid' : 'block',
-        height: filteredMovieDataList.length ? 'unset' : '16vh',
+        display: filteredAndSortedMovieDataList.length ? 'grid' : 'block',
+        height: filteredAndSortedMovieDataList.length ? 'unset' : '16vh',
       }"
     >
       <MyMovieCard
-        v-for="item in filteredMovieDataList"
+        v-for="item in filteredAndSortedMovieDataList"
         :movieData="item"
         :key="`movie-${item.title}`"
         @movie-selected="handleMovieSelection"
       />
-      <span v-if="!filteredMovieDataList.length" class="empty-list"
+      <span v-if="!filteredAndSortedMovieDataList.length" class="empty-list"
         >No films found :(</span
       >
     </div>
@@ -109,7 +109,7 @@ export default defineComponent({
       };
     },
     // ? how to refer computed method/prop from another one
-    filteredMovieDataList() {
+    filteredAndSortedMovieDataList() {
       let resultList = [];
 
       if (this.searchString) {
@@ -119,7 +119,7 @@ export default defineComponent({
       } else {
         resultList = this.movieDataList;
       }
-      return resultList;
+      return resultList.sort((a, b) => b[this.sortBy] - a[this.sortBy]);
     },
   },
   methods: {
