@@ -4,7 +4,7 @@
     <div class="details">
       <span class="title">{{ movieData.title }}</span>
       <span class="release-date">{{ movieData.relDate }}</span>
-      <span class="genre">{{ movieData.genre }}</span>
+      <span class="genre">{{ movieData.genre.join(", ") }}</span>
     </div>
   </div>
 </template>
@@ -30,15 +30,10 @@ export default defineComponent({
 .item-wrapper {
   width: 25vw;
   height: 70vh;
-  &:not(:last-child) {
-    margin-bottom: 3%;
-  }
   &:last-child {
-    padding-bottom: 6%;
+    padding-bottom: 10vh;
   }
-  &:first-child {
-    padding-top: 6%;
-  }
+  cursor: pointer;
 
   .details {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",

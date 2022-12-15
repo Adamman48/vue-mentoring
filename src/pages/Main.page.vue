@@ -114,6 +114,14 @@ header {
   height: 90vh;
   /* should be removed later */
   display: inline;
+
+  .results-main {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5%;
+    justify-items: center;
+    padding: 5% 2%;
+  }
 }
 
 .search-toggle {

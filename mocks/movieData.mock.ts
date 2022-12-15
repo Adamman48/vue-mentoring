@@ -2,7 +2,7 @@ import { MovieItemInterface } from "../src/definitions/MyMovieItem.definitions";
 
 export const mockMovieDataList: MovieItemInterface[] = [
   {
-    genre: "SciFi & Adventure",
+    genre: ["SciFi", "Adventure"],
     imgUrl: "anh.png",
     relDate: 1977,
     title: "A New Hope",
@@ -13,7 +13,7 @@ export const mockMovieDataList: MovieItemInterface[] = [
     rating: 8.6,
   },
   {
-    genre: "SciFi & Adventure",
+    genre: ["SciFi", "Adventure"],
     imgUrl: "tesb.png",
     relDate: 1980,
     title: "The Empire Strikes Back",
@@ -24,7 +24,7 @@ export const mockMovieDataList: MovieItemInterface[] = [
     rating: 8.7,
   },
   {
-    genre: "SciFi & Adventure",
+    genre: ["SciFi", "Adventure"],
     imgUrl: "rotj.png",
     relDate: 1983,
     title: "Return of the Jedi",
@@ -34,7 +34,7 @@ export const mockMovieDataList: MovieItemInterface[] = [
     rating: 8.6,
   },
   {
-    genre: "SciFi & Adventure",
+    genre: ["SciFi", "Adventure"],
     imgUrl: "tpm.png",
     relDate: 1999,
     title: "The Phantom Menace",
@@ -44,7 +44,7 @@ export const mockMovieDataList: MovieItemInterface[] = [
     rating: 8.6,
   },
   {
-    genre: "SciFi & Adventure",
+    genre: ["SciFi", "Adventure"],
     imgUrl: "aotc.png",
     relDate: 2002,
     title: "Attack of the Clones",
@@ -54,7 +54,7 @@ export const mockMovieDataList: MovieItemInterface[] = [
     rating: 8.6,
   },
   {
-    genre: "SciFi & Adventure",
+    genre: ["SciFi", "Adventure"],
     imgUrl: "rots.png",
     relDate: 2005,
     title: "Revenge of the Sith",

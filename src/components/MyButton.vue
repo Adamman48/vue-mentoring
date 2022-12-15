@@ -20,16 +20,15 @@ export default defineComponent({
   props: {
     innerText: {
       type: [String, Array],
-      required: true,
-      // ? USED TO WORK NOW IT DOESN'T WTF ?
-      /*       validator(value) {
+      required: true /* 
+        validator(value) {
         const isString = typeof value === "string";
         const isTwoMemberStringList =
           Array.isArray(value) &&
           value.every((item) => typeof item === "string") &&
           value.length === 2;
         return isString || isTwoMemberStringList;
-      }, */
+      }, */,
     },
   },
   data() {

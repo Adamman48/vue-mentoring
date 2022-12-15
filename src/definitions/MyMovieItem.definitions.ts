@@ -2,7 +2,7 @@ export interface MovieItemInterface {
   imgUrl: string;
   title: string;
   relDate: number;
-  genre: string;
+  genre: string[];
   synopsis: string;
   tag: string;
   runningTimeInMins: number;
