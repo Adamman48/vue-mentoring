@@ -2,9 +2,12 @@
   <div class="backdrop" :class="classObj"></div>
   <div class="background" :class="classObj"></div>
   <header :class="classObj">
-    <div class="whatever">
+    <div class="logo">
       <MyLogo :size="SizeEnum.S" />
-      <span class="material-icons" @click="handleMovieSelection(null)"
+      <span
+        class="material-icons"
+        v-if="selectedMovie"
+        @click="handleMovieSelection(null)"
         >search</span
       >
     </div>
@@ -14,7 +17,7 @@
       <div class="search-toggle">
         <span>SEARCH BY</span>
         <MyButton
-          :innerText="[SearchToggleEnum.TITLE, SearchToggleEnum.GENRES]"
+          :innerText="['title', 'genre']"
           @toggle-changed="handleSearchByToggleChange"
         />
       </div>
@@ -33,7 +36,7 @@
     <span class="results-toggle">
       <span>SORT BY</span>
       <MyButton
-        :innerText="[SortToggleEnum.REL_DATE, SortToggleEnum.RATING]"
+        :innerText="['release date', 'rating']"
         @toggle-changed="handleSortByToggleChange"
       />
     </span>
@@ -121,6 +124,7 @@ export default defineComponent({
     },
     handleMovieSelection(movieId: number | null): void {
       this.selectedMovie = movieId;
+      if (!movieId) this.searchString = "";
     },
   },
   mixins: [enums],
@@ -150,8 +154,9 @@ export default defineComponent({
   height: 70vh;
   opacity: 85%;
 
-  .whatever {
+  .logo {
     margin-bottom: 2%;
+    padding-top: 0;
   }
 }
 
@@ -162,7 +167,8 @@ header {
   width: 100%;
   height: 45vh;
 
-  .whatever {
+  .logo {
+    padding-top: 1%;
     text-align: left;
     margin-bottom: 5%;
     padding-left: 2%;

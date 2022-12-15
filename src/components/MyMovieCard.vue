@@ -37,8 +37,7 @@ export default defineComponent({
 
 <style scoped lang="scss">
 .item-wrapper {
-  width: 25vw;
-  height: 70vh;
+  max-width: 25vw;
   cursor: pointer;
 
   .details {
