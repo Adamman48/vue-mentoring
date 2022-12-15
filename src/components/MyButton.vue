@@ -80,11 +80,12 @@ button {
 }
 
 .toggle-button {
-  padding: 1em 0 1em 0;
-  background-color: #55555577;
+  padding: 0.4em 0;
+  background-color: #555555c0;
 
   span {
-    padding: 1em;
+    padding: 0.4em 1.5em;
+    font-size: inherit;
     &:nth-child(1) {
       border-radius: 5px 0 0 5px;
     }

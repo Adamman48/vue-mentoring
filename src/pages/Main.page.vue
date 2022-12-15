@@ -103,6 +103,11 @@ header {
     text-align: left;
     margin: 0 0 1% 6%;
   }
+
+  .search-toggle {
+    font-size: 1em;
+    color: white;
+  }
 }
 
 .results-section {
