@@ -1,7 +1,12 @@
 <template>
   <div>
-    <input type="text" placeholder="Search" />
-    <MyButton :innerText="'search'" />
+    <input
+      type="text"
+      placeholder="Search"
+      v-model="inputText"
+      @keyup.enter="handleSearchTrigger"
+    />
+    <MyButton :innerText="'search'" @click="handleSearchTrigger" />
   </div>
 </template>
 
@@ -14,6 +19,17 @@ export default defineComponent({
   components: {
     MyButton,
   },
+  data() {
+    return {
+      inputText: "",
+    };
+  },
+  methods: {
+    handleSearchTrigger() {
+      this.$emit("searchTriggered", this.inputText);
+    },
+  },
+  emits: ["searchTriggered"],
 });
 </script>
 

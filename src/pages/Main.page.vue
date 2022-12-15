@@ -4,14 +4,16 @@
   <header>
     <MyLogo :size="SizeEnum.S" />
     <span class="page-title">FIND YOUR MOVIE</span>
-    <MySearch />
+    <MySearch @search-triggered="handleSearchChange" />
     <div class="search-toggle">
       <span>SEARCH BY</span>
       <MyButton :innerText="['title', 'genre']" />
     </div>
   </header>
   <div class="results-header">
-    <span class="results-total">{{ movieDataList.length }} movie found</span>
+    <span class="results-total"
+      >{{ filteredMovieDataList.length }} movie found</span
+    >
     <span class="results-toggle">
       <span>SORT BY</span>
       <MyButton :innerText="['release date', 'rating']" />
@@ -20,7 +22,7 @@
   <section class="results-section">
     <div class="results-main">
       <MyMovieCard
-        v-for="item in movieDataList"
+        v-for="item in filteredMovieDataList"
         :movieData="item"
         :key="`movie-${item.title}`"
       />
@@ -29,7 +31,7 @@
   <footer>
     <MyLogo :size="SizeEnum.XS" />
   </footer>
-  <MyMovieDisplay :movieData="movieDataList[0]" />
+  <MyMovieDisplay :movieData="filteredMovieDataList[0]" />
 </template>
 
 <script lang="ts">
@@ -55,8 +57,31 @@ export default defineComponent({
   },
   data() {
     return {
+      // TODO: remove later
       movieDataList: mockMovieDataList,
+      searchString: "",
     };
+  },
+  computed: {
+    filteredMovieDataList() {
+      let resultList = [];
+
+      if (this.searchString) {
+        resultList = this.movieDataList.filter((movieItem) =>
+          movieItem.title
+            .toLowerCase()
+            .includes(this.searchString.toLowerCase())
+        );
+      } else {
+        resultList = this.movieDataList;
+      }
+      return resultList;
+    },
+  },
+  methods: {
+    handleSearchChange(searchInput: string) {
+      this.searchString = searchInput;
+    },
   },
   mixins: [enums],
 });
