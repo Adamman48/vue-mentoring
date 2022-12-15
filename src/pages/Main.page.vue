@@ -42,13 +42,22 @@
     </span>
   </div>
   <section class="results-section">
-    <div class="results-main">
+    <div
+      class="results-main"
+      :style="{
+        display: filteredMovieDataList.length ? 'grid' : 'block',
+        height: filteredMovieDataList.length ? 'unset' : '16vh',
+      }"
+    >
       <MyMovieCard
         v-for="item in filteredMovieDataList"
         :movieData="item"
         :key="`movie-${item.title}`"
         @movie-selected="handleMovieSelection"
       />
+      <span v-if="!filteredMovieDataList.length" class="empty-list"
+        >No films found :(</span
+      >
     </div>
   </section>
   <footer>
@@ -99,6 +108,7 @@ export default defineComponent({
         "header-display": this.selectedMovie,
       };
     },
+    // ? how to refer computed method/prop from another one
     filteredMovieDataList() {
       let resultList = [];
 
@@ -266,5 +276,12 @@ footer {
     position: relative;
     top: 35%;
   }
+}
+
+.empty-list {
+  font-size: 3em;
+  display: block;
+  position: relative;
+  top: 25%;
 }
 </style>
