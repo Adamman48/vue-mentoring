@@ -2,8 +2,11 @@
   <div class="backdrop" :class="classObj"></div>
   <div class="background" :class="classObj"></div>
   <header :class="classObj">
-    <MyLogo :size="SizeEnum.S" />
-    <div v-if="selectedMovie">
+    <div class="whatever">
+      <MyLogo :size="SizeEnum.S" />
+      <span class="material-icons">search</span>
+    </div>
+    <div v-if="!selectedMovie">
       <span class="page-title">FIND YOUR MOVIE</span>
       <MySearch @search-triggered="handleSearchChange" />
       <div class="search-toggle">
@@ -81,8 +84,7 @@ export default defineComponent({
   computed: {
     classObj() {
       return {
-        // TODO: reverse
-        "header-display": !this.selectedMovie,
+        "header-display": this.selectedMovie,
       };
     },
     filteredMovieDataList() {
@@ -136,7 +138,7 @@ export default defineComponent({
   height: 70vh;
   opacity: 85%;
 
-  .logo-wrapper {
+  .whatever {
     margin-bottom: 2%;
   }
 }
@@ -148,10 +150,27 @@ header {
   width: 100%;
   height: 45vh;
 
-  .logo-wrapper {
+  .whatever {
     text-align: left;
     margin-bottom: 5%;
-    padding: 2% 0 0 2%;
+    padding-left: 2%;
+
+    div {
+      width: 90%;
+      display: inline-block;
+    }
+
+    span {
+      display: inline-block;
+      width: auto;
+      text-align: center;
+      color: #f65261;
+      font-size: 2em;
+      position: relative;
+      top: 0.4em;
+      margin-left: 3%;
+      cursor: pointer;
+    }
   }
 
   .page-title {
