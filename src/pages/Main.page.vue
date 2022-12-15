@@ -1,17 +1,20 @@
 <template>
-  <div class="backdrop"></div>
-  <div class="background"></div>
-  <header>
+  <div class="backdrop" :class="classObj"></div>
+  <div class="background" :class="classObj"></div>
+  <header :class="classObj">
     <MyLogo :size="SizeEnum.S" />
-    <span class="page-title">FIND YOUR MOVIE</span>
-    <MySearch @search-triggered="handleSearchChange" />
-    <div class="search-toggle">
-      <span>SEARCH BY</span>
-      <MyButton
-        :innerText="[SearchToggleEnum.TITLE, SearchToggleEnum.GENRES]"
-        @toggle-changed="handleSearchByToggleChange"
-      />
+    <div v-if="selectedMovie">
+      <span class="page-title">FIND YOUR MOVIE</span>
+      <MySearch @search-triggered="handleSearchChange" />
+      <div class="search-toggle">
+        <span>SEARCH BY</span>
+        <MyButton
+          :innerText="[SearchToggleEnum.TITLE, SearchToggleEnum.GENRES]"
+          @toggle-changed="handleSearchByToggleChange"
+        />
+      </div>
     </div>
+    <MyMovieDisplay v-else :movieData="filteredMovieDataList[0]" />
   </header>
   <div class="results-header">
     <span class="results-total"
@@ -37,7 +40,6 @@
   <footer>
     <MyLogo :size="SizeEnum.XS" />
   </footer>
-  <MyMovieDisplay :movieData="filteredMovieDataList[0]" />
 </template>
 
 <script lang="ts">
@@ -73,9 +75,16 @@ export default defineComponent({
       searchString: "",
       searchBy: SearchToggleEnum.TITLE,
       sortBy: SortToggleEnum.REL_DATE,
+      selectedMovie: null,
     };
   },
   computed: {
+    classObj() {
+      return {
+        // TODO: reverse
+        "header-display": !this.selectedMovie,
+      };
+    },
     filteredMovieDataList() {
       let resultList = [];
 
@@ -121,6 +130,15 @@ export default defineComponent({
   background-size: cover;
   height: 45vh;
   filter: blur(2px);
+}
+
+.header-display {
+  height: 70vh;
+  opacity: 85%;
+
+  .logo-wrapper {
+    margin-bottom: 2%;
+  }
 }
 
 header {
@@ -192,7 +210,7 @@ header {
 
   .results-toggle {
     float: right;
-    margin: 0.6% 5% 0 0;
+    margin: 1% 5% 0 0;
     color: white;
   }
 }

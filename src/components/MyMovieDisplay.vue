@@ -41,17 +41,20 @@ export default defineComponent({
 <style scoped lang="scss">
 .wrapper {
   font-family: sans-serif;
+  padding-left: 2%;
+  color: white;
+  height: 86%;
 
   img {
     float: left;
-    height: auto;
+    height: 90%;
     max-width: 25vw;
   }
 
   .info-section {
     display: inline-block;
     width: 60vw;
-    margin: 5%;
+    margin: 5% 5% 5% 1%;
   }
 
   header {
@@ -69,7 +72,8 @@ export default defineComponent({
       padding: 2%;
       font-size: 1.5em;
       color: #a1e66f;
-      border-color: gray;
+      border-color: white;
+      border-width: 0.06em;
     }
 
     .tag {
