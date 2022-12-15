@@ -30,9 +30,6 @@ export default defineComponent({
 .item-wrapper {
   width: 25vw;
   height: 70vh;
-  &:last-child {
-    padding-bottom: 10vh;
-  }
   cursor: pointer;
 
   .details {
@@ -43,6 +40,7 @@ export default defineComponent({
 
     .title {
       font-weight: 700;
+      width: 70%;
     }
 
     .release-date {
@@ -68,7 +66,7 @@ export default defineComponent({
   }
 
   img {
-    height: auto;
+    height: 80%;
     max-width: 25vw;
   }
 }
