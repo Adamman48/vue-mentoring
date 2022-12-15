@@ -3,7 +3,7 @@
     <img :src="getImgUrl(movieData.imgUrl)" :alt="`${movieData.title} image`" />
     <div class="details">
       <span class="title">{{ movieData.title }}</span>
-      <span class="release-date">{{ movieData.relDate }}</span>
+      <span class="release-date">{{ movieData.release }}</span>
       <span class="genre">{{ genresString }}</span>
     </div>
   </div>
@@ -25,7 +25,7 @@ export default defineComponent({
   emits: ["movieSelected"],
   computed: {
     genresString(): string {
-      const transformedGenreList = this.movieData.genres.map(
+      const transformedGenreList = this.movieData.genre.map(
         (genre: string) => genre.charAt(0).toUpperCase() + genre.slice(1)
       );
       return transformedGenreList.join(", ");

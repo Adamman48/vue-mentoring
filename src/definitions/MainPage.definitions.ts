@@ -2,10 +2,10 @@
 
 export enum SearchToggleEnum {
   TITLE = "title",
-  GENRES = "genres",
+  GENRES = "genre",
 }
 
 export enum SortToggleEnum {
-  REL_DATE = "relDate",
+  REL_DATE = "release",
   RATING = "rating",
 }

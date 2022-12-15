@@ -13,7 +13,7 @@
         <span class="tag">{{ movieData.tag }}</span>
       </header>
       <div class="numbers">
-        <span class="release-date">{{ movieData.relDate }}</span>
+        <span class="release-date">{{ movieData.release }}</span>
         <span class="running-time">{{ movieData.runningTimeInMins }} min</span>
       </div>
       <span class="synopsis">{{ movieData.synopsis }}</span>

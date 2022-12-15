@@ -17,7 +17,7 @@
       <div class="search-toggle">
         <span>SEARCH BY</span>
         <MyButton
-          :innerText="['title', 'genre']"
+          :innerText="[SearchToggleEnum.TITLE, SearchToggleEnum.GENRES]"
           @toggle-changed="handleSearchByToggleChange"
         />
       </div>
@@ -36,7 +36,7 @@
     <span class="results-toggle">
       <span>SORT BY</span>
       <MyButton
-        :innerText="['release date', 'rating']"
+        :innerText="[SortToggleEnum.REL_DATE, SortToggleEnum.RATING]"
         @toggle-changed="handleSortByToggleChange"
       />
     </span>
