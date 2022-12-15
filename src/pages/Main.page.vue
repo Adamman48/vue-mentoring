@@ -7,7 +7,7 @@
     <MySearch @search-triggered="handleSearchChange" />
     <div class="search-toggle">
       <span>SEARCH BY</span>
-      <MyButton :innerText="['title', 'genre']" />
+      <MyButton :innerText="[SearchToggleEnum.TITLE, SearchToggleEnum.GENRE]" />
     </div>
   </header>
   <div class="results-header">
@@ -16,7 +16,7 @@
     >
     <span class="results-toggle">
       <span>SORT BY</span>
-      <MyButton :innerText="['release date', 'rating']" />
+      <MyButton :innerText="[SortToggleEnum.REL_DATE, SortToggleEnum.RATING]" />
     </span>
   </div>
   <section class="results-section">
@@ -45,6 +45,10 @@ import { defineComponent } from "vue";
 import { mockMovieDataList } from "../../mocks/movieData.mock";
 import { enums } from "@/mixins/enums.mixin";
 import MyMovieDisplay from "@/components/MyMovieDisplay.vue";
+import {
+  SearchToggleEnum,
+  SortToggleEnum,
+} from "@/definitions/MainPage.definitions";
 
 export default defineComponent({
   name: "main-page",
@@ -60,6 +64,8 @@ export default defineComponent({
       // TODO: remove later
       movieDataList: mockMovieDataList,
       searchString: "",
+      searchBy: SearchToggleEnum.TITLE,
+      sortBy: SortToggleEnum.REL_DATE,
     };
   },
   computed: {
