@@ -30,7 +30,15 @@ export default defineComponent({
 .item-wrapper {
   width: 25vw;
   height: 70vh;
-  margin-bottom: 3em;
+  &:not(:last-child) {
+    margin-bottom: 3%;
+  }
+  &:last-child {
+    padding-bottom: 6%;
+  }
+  &:first-child {
+    padding-top: 6%;
+  }
 
   .details {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",

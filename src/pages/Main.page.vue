@@ -148,6 +148,11 @@ header {
   }
 }
 
+.results-main {
+  background-color: #232323;
+  color: #ffffff;
+}
+
 footer {
   width: 100%;
   height: 10vh;
