@@ -7,4 +7,5 @@ export interface MovieItemInterface {
   tag: string;
   runningTimeInMins: number;
   rating: number;
+  id: number;
 }

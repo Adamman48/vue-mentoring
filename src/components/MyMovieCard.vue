@@ -1,5 +1,5 @@
 <template>
-  <div class="item-wrapper">
+  <div class="item-wrapper" @click="$emit('movieSelected', movieData.id)">
     <img :src="getImgUrl(movieData.imgUrl)" :alt="`${movieData.title} image`" />
     <div class="details">
       <span class="title">{{ movieData.title }}</span>
@@ -22,6 +22,7 @@ export default defineComponent({
       required: true,
     },
   },
+  emits: ["movieSelected"],
   computed: {
     genresString(): string {
       const transformedGenreList = this.movieData.genres.map(

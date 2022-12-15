@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div v-if="movieData" class="wrapper">
     <img
       :src="getImgUrl(movieData.imgUrl)"
       :alt="`${movieData.title} poster image`"
@@ -30,7 +30,7 @@ export default defineComponent({
   name: "my-movie-display",
   props: {
     movieData: {
-      type: Object as PropType<MovieItemInterface>,
+      type: Object as PropType<MovieItemInterface | undefined>,
       required: true,
     },
   },

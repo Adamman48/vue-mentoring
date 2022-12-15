@@ -11,6 +11,7 @@ export const mockMovieDataList: MovieItemInterface[] = [
     tag: "The movie that changed cinema",
     runningTimeInMins: 121,
     rating: 8.6,
+    id: 1001,
   },
   {
     genres: ["action", "adventure", "fantasy"],
@@ -22,6 +23,7 @@ export const mockMovieDataList: MovieItemInterface[] = [
     tag: "Best Star Wars movie ever",
     runningTimeInMins: 124,
     rating: 8.7,
+    id: 1002,
   },
   {
     genres: ["action", "adventure", "fantasy"],
@@ -33,6 +35,7 @@ export const mockMovieDataList: MovieItemInterface[] = [
     tag: "The epic conclusion of the legendary saga",
     runningTimeInMins: 121,
     rating: 8.3,
+    id: 1003,
   },
   {
     genres: ["action", "adventure", "fantasy"],
@@ -44,6 +47,7 @@ export const mockMovieDataList: MovieItemInterface[] = [
     tag: "The beginning of the epic saga",
     runningTimeInMins: 136,
     rating: 6.5,
+    id: 1004,
   },
   {
     genres: ["action", "adventure", "fantasy", "romance"],
@@ -55,6 +59,7 @@ export const mockMovieDataList: MovieItemInterface[] = [
     tag: "The worst of the lot",
     runningTimeInMins: 142,
     rating: 6.6,
+    id: 1005,
   },
   {
     genres: ["action", "adventure", "fantasy"],
@@ -66,5 +71,6 @@ export const mockMovieDataList: MovieItemInterface[] = [
     tag: "The birth of a legendary villain",
     runningTimeInMins: 140,
     rating: 7.6,
+    id: 1006,
   },
 ];

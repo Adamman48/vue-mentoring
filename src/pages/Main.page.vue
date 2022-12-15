@@ -4,7 +4,9 @@
   <header :class="classObj">
     <div class="whatever">
       <MyLogo :size="SizeEnum.S" />
-      <span class="material-icons">search</span>
+      <span class="material-icons" @click="handleMovieSelection(null)"
+        >search</span
+      >
     </div>
     <div v-if="!selectedMovie">
       <span class="page-title">FIND YOUR MOVIE</span>
@@ -17,7 +19,12 @@
         />
       </div>
     </div>
-    <MyMovieDisplay v-else :movieData="filteredMovieDataList[0]" />
+    <MyMovieDisplay
+      v-else
+      :movieData="
+        filteredMovieDataList.find((item) => item.id === selectedMovie)
+      "
+    />
   </header>
   <div class="results-header">
     <span class="results-total"
@@ -37,6 +44,7 @@
         v-for="item in filteredMovieDataList"
         :movieData="item"
         :key="`movie-${item.title}`"
+        @movie-selected="handleMovieSelection"
       />
     </div>
   </section>
@@ -78,7 +86,8 @@ export default defineComponent({
       searchString: "",
       searchBy: SearchToggleEnum.TITLE,
       sortBy: SortToggleEnum.REL_DATE,
-      selectedMovie: null,
+      // TODO: use index of filtered list maybe
+      selectedMovie: null as null | number,
     };
   },
   computed: {
@@ -101,14 +110,17 @@ export default defineComponent({
     },
   },
   methods: {
-    handleSearchChange(searchInput: string) {
+    handleSearchChange(searchInput: string): void {
       this.searchString = searchInput;
     },
-    handleSearchByToggleChange(toggledValue: SearchToggleEnum) {
+    handleSearchByToggleChange(toggledValue: SearchToggleEnum): void {
       this.searchBy = toggledValue;
     },
-    handleSortByToggleChange(toggledValue: SortToggleEnum) {
+    handleSortByToggleChange(toggledValue: SortToggleEnum): void {
       this.sortBy = toggledValue;
+    },
+    handleMovieSelection(movieId: number | null): void {
+      this.selectedMovie = movieId;
     },
   },
   mixins: [enums],
