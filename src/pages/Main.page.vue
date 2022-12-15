@@ -55,6 +55,7 @@ import {
   SearchToggleEnum,
   SortToggleEnum,
 } from "@/definitions/MainPage.definitions";
+import { movieListFilterCb } from "./Main.utils";
 
 export default defineComponent({
   name: "main-page",
@@ -79,20 +80,9 @@ export default defineComponent({
       let resultList = [];
 
       if (this.searchString) {
-        resultList = this.movieDataList.filter((movieItem) => {
-          if (this.searchBy === SearchToggleEnum.TITLE) {
-            return movieItem[this.searchBy]
-              .toLowerCase()
-              .includes(this.searchString.toLowerCase());
-          } else {
-            const filteredGenreList = movieItem[this.searchBy].filter(
-              (genreItem) => genreItem.includes(this.searchString.toLowerCase())
-            );
-            return movieItem[this.searchBy].some((genreItem) =>
-              filteredGenreList.includes(genreItem)
-            );
-          }
-        });
+        resultList = this.movieDataList.filter(
+          movieListFilterCb(this.searchBy, this.searchString)
+        );
       } else {
         resultList = this.movieDataList;
       }
