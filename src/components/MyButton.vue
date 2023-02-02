@@ -1,6 +1,6 @@
 <template>
   <button :class="classObj" @click="onClick">
-    {{ typeof innerText === "string" ? innerText.toUpperCase() : null }}
+    {{ $filters.uppercase(innerText) }}
     <template v-if="Array.isArray(innerText)">
       <span
         v-for="(item, index) in innerText"

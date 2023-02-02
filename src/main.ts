@@ -1,4 +1,16 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 
-createApp(App).mount("#app");
+const filters = {
+  uppercase(value: any) {
+    if (typeof value === "string") {
+      return value.toUpperCase();
+    }
+  },
+};
+
+const app = createApp(App);
+
+app.config.globalProperties.$filters = filters;
+
+app.mount("#app");
