@@ -1,5 +1,5 @@
 import RootStateInterface from "@/definitions/store/root.definitions";
-import { mockMovieDataList } from "../../mocks/movieData.mock";
+import { mockMovieDataList } from "../../../mocks/movieData.mock";
 
 const state: RootStateInterface = {
   movies: mockMovieDataList,

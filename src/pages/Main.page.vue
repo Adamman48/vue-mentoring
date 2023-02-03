@@ -101,10 +101,12 @@ export default defineComponent({
   },
   computed: {
     ...mapState({
-      moviesList: (state: any) => state.movies,
-      selectedMovie: (state: any) => state.selectedMovie,
+      moviesList: (state: any) => state.movies.movies,
+      selectedMovie: (state: any) => state.movies.selectedMovie,
     }),
-    ...mapGetters(["getFilteredMovieList"]),
+    ...mapGetters({
+      getFilteredMovieList: "movies/getFilteredMovieList",
+    }),
     classObj() {
       return {
         "header-display": this.selectedMovie,
@@ -128,7 +130,9 @@ export default defineComponent({
     },
   },
   methods: {
-    ...mapActions(["selectMovie"]),
+    ...mapActions({
+      selectMovie: "movies/selectMovie",
+    }),
     handleSearchChange(searchInput: string): void {
       this.searchString = searchInput;
     },

@@ -30,7 +30,7 @@ export default defineComponent({
   name: "my-movie-display",
   computed: {
     ...mapState({
-      selectedMovie: (state: any) => state.selectedMovie,
+      selectedMovie: (state: any) => state.movies.selectedMovie,
     }),
   },
   mixins: [imageUtils],
