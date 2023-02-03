@@ -1,38 +1,37 @@
 <template>
-  <div v-if="movieData" class="wrapper">
+  <div v-if="selectedMovie" class="wrapper">
     <img
-      :src="getImgUrl(movieData.imgUrl)"
-      :alt="`${movieData.title} poster image`"
+      :src="getImgUrl(selectedMovie.poster_path)"
+      :alt="`${selectedMovie.title} poster image`"
     />
     <section class="info-section">
       <header>
         <div>
-          <span class="title">{{ movieData.title }}</span>
-          <span class="rating">{{ movieData.rating }}</span>
+          <span class="title">{{ selectedMovie.title }}</span>
+          <span class="rating">{{ selectedMovie.vote_average }}</span>
         </div>
-        <span class="tag">{{ movieData.tag }}</span>
+        <span class="tag">{{ selectedMovie.tagLine }}</span>
       </header>
       <div class="numbers">
-        <span class="release-date">{{ movieData.release }}</span>
-        <span class="running-time">{{ movieData.runningTimeInMins }} min</span>
+        <span class="release-date">{{ selectedMovie.release_date }}</span>
+        <span class="running-time">{{ selectedMovie.runtime }} min</span>
       </div>
-      <span class="synopsis">{{ movieData.synopsis }}</span>
+      <span class="synopsis">{{ selectedMovie.overview }}</span>
     </section>
   </div>
 </template>
 
 <script lang="ts">
-import { MovieItemInterface } from "@/definitions/MyMovieItem.definitions";
 import { imageUtils } from "@/mixins/imageUtils.mixin";
-import { defineComponent, PropType } from "vue";
+import { defineComponent } from "vue";
+import { mapState } from "vuex";
 
 export default defineComponent({
   name: "my-movie-display",
-  props: {
-    movieData: {
-      type: Object as PropType<MovieItemInterface | undefined>,
-      required: true,
-    },
+  computed: {
+    ...mapState({
+      selectedMovie: (state: any) => state.selectedMovie,
+    }),
   },
   mixins: [imageUtils],
 });

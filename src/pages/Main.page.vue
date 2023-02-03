@@ -17,17 +17,15 @@
       <div class="search-toggle">
         <span>SEARCH BY</span>
         <MyButton
-          :innerText="[SearchToggleEnum.TITLE, SearchToggleEnum.GENRES]"
+          :innerText="[
+            { value: SearchToggleEnum.TITLE, label: 'title' },
+            { value: SearchToggleEnum.GENRES, label: 'genre' },
+          ]"
           @toggle-changed="handleSearchByToggleChange"
         />
       </div>
     </div>
-    <MyMovieDisplay
-      v-else
-      :movieData="
-        filteredAndSortedMovieDataList.find((item) => item.id === selectedMovie)
-      "
-    />
+    <MyMovieDisplay v-else />
   </header>
   <div class="results-header">
     <span class="results-total"
@@ -36,7 +34,10 @@
     <span class="results-toggle">
       <span>SORT BY</span>
       <MyButton
-        :innerText="[SortToggleEnum.REL_DATE, SortToggleEnum.RATING]"
+        :innerText="[
+          { value: SortToggleEnum.REL_DATE, label: 'release' },
+          { value: SortToggleEnum.RATING, label: 'rating' },
+        ]"
         @toggle-changed="handleSortByToggleChange"
       />
     </span>
@@ -73,14 +74,14 @@ import MySearch from "@/components/MySearch.vue";
 import { SizeEnum } from "@/definitions/MyLogo.definitions";
 import { defineComponent } from "vue";
 
-import { mockMovieDataList } from "../../mocks/movieData.mock";
 import { enums } from "@/mixins/enums.mixin";
 import MyMovieDisplay from "@/components/MyMovieDisplay.vue";
 import {
   SearchToggleEnum,
   SortToggleEnum,
 } from "@/definitions/MainPage.definitions";
-import { movieListFilterCb } from "./Main.utils";
+import { mapActions, mapGetters, mapState } from "vuex";
+import { MovieItemInterface } from "@/definitions/MyMovieItem.definitions";
 
 export default defineComponent({
   name: "main-page",
@@ -93,36 +94,41 @@ export default defineComponent({
   },
   data() {
     return {
-      // TODO: remove later
-      movieDataList: mockMovieDataList,
       searchString: "",
       searchBy: SearchToggleEnum.TITLE,
       sortBy: SortToggleEnum.REL_DATE,
-      // TODO: use index of filtered list maybe
-      selectedMovie: null as null | number,
     };
   },
   computed: {
+    ...mapState({
+      moviesList: (state: any) => state.movies,
+      selectedMovie: (state: any) => state.selectedMovie,
+    }),
+    ...mapGetters(["getFilteredMovieList"]),
     classObj() {
       return {
         "header-display": this.selectedMovie,
       };
     },
-    // ? how to refer computed method/prop from another one
     filteredAndSortedMovieDataList() {
       let resultList = [];
 
       if (this.searchString) {
-        resultList = this.movieDataList.filter(
-          movieListFilterCb(this.searchBy, this.searchString)
-        );
+        resultList = this.getFilteredMovieList({
+          searchString: this.searchString,
+          searchBy: this.searchBy,
+        });
       } else {
-        resultList = this.movieDataList;
+        resultList = this.moviesList;
       }
-      return resultList.sort((a, b) => b[this.sortBy] - a[this.sortBy]);
+      return resultList.sort(
+        (a: MovieItemInterface, b: MovieItemInterface) =>
+          b[this.sortBy] - a[this.sortBy]
+      );
     },
   },
   methods: {
+    ...mapActions(["selectMovie"]),
     handleSearchChange(searchInput: string): void {
       this.searchString = searchInput;
     },
@@ -133,7 +139,7 @@ export default defineComponent({
       this.sortBy = toggledValue;
     },
     handleMovieSelection(movieId: number | null): void {
-      this.selectedMovie = movieId;
+      this.selectMovie(movieId);
       if (!movieId) this.searchString = "";
     },
   },

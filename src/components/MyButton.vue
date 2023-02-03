@@ -5,8 +5,8 @@
       <span
         v-for="(item, index) in innerText"
         :key="`toggle-item-${index}`"
-        :class="{ selected: item === selected }"
-        >{{ item.toUpperCase() }}</span
+        :class="{ selected: item.value === selected }"
+        >{{ $filters.uppercase(item.label) }}</span
       >
     </template>
   </button>
@@ -19,7 +19,6 @@ export default defineComponent({
   name: "my-button",
   props: {
     innerText: {
-      type: [String, Array],
       required: true /* 
         validator(value) {
         const isString = typeof value === "string";
@@ -34,7 +33,7 @@ export default defineComponent({
   data() {
     return {
       selected: Array.isArray(this.innerText)
-        ? this.innerText[0]
+        ? this.innerText[0].value
         : this.innerText,
     };
   },
@@ -55,10 +54,10 @@ export default defineComponent({
        */
       if (Array.isArray(this.innerText)) {
         const toggledValue = this.innerText.find(
-          (val) => val !== this.selected
+          ({ value }) => value !== this.selected
         );
-        this.selected = toggledValue;
-        this.$emit("toggleChanged", toggledValue);
+        this.selected = toggledValue.value;
+        this.$emit("toggleChanged", toggledValue.value);
       } else {
         this.$emit("toggleChanged");
       }

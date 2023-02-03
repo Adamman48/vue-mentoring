@@ -1,9 +1,12 @@
 <template>
   <div class="item-wrapper" @click="$emit('movieSelected', movieData.id)">
-    <img :src="getImgUrl(movieData.imgUrl)" :alt="`${movieData.title} image`" />
+    <img
+      :src="getImgUrl(movieData.poster_path)"
+      :alt="`${movieData.title} image`"
+    />
     <div class="details">
       <span class="title">{{ movieData.title }}</span>
-      <span class="release-date">{{ movieData.release }}</span>
+      <span class="release-date">{{ movieData.release_date }}</span>
       <span class="genre">{{ genresString }}</span>
     </div>
   </div>
@@ -25,7 +28,7 @@ export default defineComponent({
   emits: ["movieSelected"],
   computed: {
     genresString(): string {
-      const transformedGenreList = this.movieData.genre.map(
+      const transformedGenreList = this.movieData.genres.map(
         (genre: string) => genre.charAt(0).toUpperCase() + genre.slice(1)
       );
       return transformedGenreList.join(", ");
