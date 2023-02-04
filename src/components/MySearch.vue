@@ -12,6 +12,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { mapActions } from "vuex";
 import MyButton from "./MyButton.vue";
 
 export default defineComponent({
@@ -25,8 +26,16 @@ export default defineComponent({
     };
   },
   methods: {
+    ...mapActions({
+      updateSearchValue: "controls/updateSearchValue",
+    }),
     handleSearchTrigger() {
       this.$emit("searchTriggered", this.inputText);
+    },
+  },
+  watch: {
+    inputText(newText: string) {
+      this.updateSearchValue(newText);
     },
   },
   emits: ["searchTriggered"],

@@ -13,7 +13,7 @@
     </div>
     <div v-if="!selectedMovie">
       <span class="page-title">FIND YOUR MOVIE</span>
-      <MySearch @search-triggered="handleSearchChange" />
+      <MySearch @search-triggered="handleSearch" />
       <div class="search-toggle">
         <span>SEARCH BY</span>
         <MyButton
@@ -21,7 +21,7 @@
             { value: SearchToggleEnum.TITLE, label: 'title' },
             { value: SearchToggleEnum.GENRES, label: 'genre' },
           ]"
-          @toggle-changed="handleSearchByToggleChange"
+          @toggle-changed="setSearchBy"
         />
       </div>
     </div>
@@ -29,7 +29,7 @@
   </header>
   <div class="results-header">
     <span class="results-total"
-      >{{ filteredAndSortedMovieDataList.length }} movie found</span
+      >{{ filteredMovieList.length }} movie found</span
     >
     <span class="results-toggle">
       <span>SORT BY</span>
@@ -38,7 +38,7 @@
           { value: SortToggleEnum.REL_DATE, label: 'release' },
           { value: SortToggleEnum.RATING, label: 'rating' },
         ]"
-        @toggle-changed="handleSortByToggleChange"
+        @toggle-changed="setSortBy"
       />
     </span>
   </div>
@@ -46,17 +46,17 @@
     <div
       class="results-main"
       :style="{
-        display: filteredAndSortedMovieDataList.length ? 'grid' : 'block',
-        height: filteredAndSortedMovieDataList.length ? 'unset' : '16vh',
+        display: filteredMovieList.length ? 'grid' : 'block',
+        height: filteredMovieList.length ? 'unset' : '16vh',
       }"
     >
       <MyMovieCard
-        v-for="item in filteredAndSortedMovieDataList"
+        v-for="item in filteredMovieList"
         :movieData="item"
         :key="`movie-${item.title}`"
         @movie-selected="handleMovieSelection"
       />
-      <span v-if="!filteredAndSortedMovieDataList.length" class="empty-list"
+      <span v-if="!filteredMovieList.length" class="empty-list"
         >No films found :(</span
       >
     </div>
@@ -94,58 +94,51 @@ export default defineComponent({
   },
   data() {
     return {
-      searchString: "",
-      searchBy: SearchToggleEnum.TITLE,
-      sortBy: SortToggleEnum.REL_DATE,
+      filteredMovieList: [] as MovieItemInterface[],
     };
   },
   computed: {
     ...mapState({
-      moviesList: (state: any) => state.movies.movies,
       selectedMovie: (state: any) => state.movies.selectedMovie,
     }),
     ...mapGetters({
-      getFilteredMovieList: "movies/getFilteredMovieList",
+      filteredAndSortedList: "movies/filteredAndSortedList",
+      sortBy: "controls/sortBy",
+      searchBy: "controls/searchBy",
     }),
     classObj() {
       return {
         "header-display": this.selectedMovie,
       };
     },
-    filteredAndSortedMovieDataList() {
-      let resultList = [];
-
-      if (this.searchString) {
-        resultList = this.getFilteredMovieList({
-          searchString: this.searchString,
-          searchBy: this.searchBy,
-        });
-      } else {
-        resultList = this.moviesList;
-      }
-      return resultList.sort(
-        (a: MovieItemInterface, b: MovieItemInterface) =>
-          b[this.sortBy] - a[this.sortBy]
-      );
-    },
   },
   methods: {
     ...mapActions({
       selectMovie: "movies/selectMovie",
+      setSortBy: "controls/setSortBy",
+      setSearchBy: "controls/setSearchBy",
+      updateSearchValue: "controls/updateSearchValue",
     }),
-    handleSearchChange(searchInput: string): void {
-      this.searchString = searchInput;
-    },
-    handleSearchByToggleChange(toggledValue: SearchToggleEnum): void {
-      this.searchBy = toggledValue;
-    },
-    handleSortByToggleChange(toggledValue: SortToggleEnum): void {
-      this.sortBy = toggledValue;
+    handleSearch(): void {
+      this.filteredMovieList = this.filteredAndSortedList;
     },
     handleMovieSelection(movieId: number | null): void {
       this.selectMovie(movieId);
-      if (!movieId) this.searchString = "";
+      if (!movieId) this.updateSearchValue("");
     },
+  },
+  watch: {
+    sortBy(): void {
+      this.filteredMovieList = this.filteredAndSortedList;
+    },
+    searchBy(): void {
+      this.filteredMovieList = this.filteredAndSortedList;
+    },
+  },
+  created() {
+    this.setSearchBy(SearchToggleEnum.TITLE);
+    this.setSortBy(SortToggleEnum.REL_DATE);
+    this.filteredMovieList = this.filteredAndSortedList;
   },
   mixins: [enums],
 });

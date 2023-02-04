@@ -1,8 +1,8 @@
 import { SELECT_MOVIE } from "@/definitions/store/mutationTypes";
-import RootStateInterface from "@/definitions/store/root.definitions";
+import MoviesStateInterface from "@/definitions/store/movies.definitions";
 
 const mutations = {
-  [SELECT_MOVIE](state: RootStateInterface, movieId: number) {
+  [SELECT_MOVIE](state: MoviesStateInterface, movieId: number) {
     state.selectedMovie =
       state.movies.find((movieItem) => movieItem.id === movieId) || null;
   },

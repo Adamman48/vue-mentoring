@@ -1,15 +1,23 @@
-import { FilterByInterface } from "@/definitions/store/getters.definitions";
-import RootStateInterface from "@/definitions/store/root.definitions";
-import { movieListFilterCb } from "@/pages/Main.utils";
+import MoviesStateInterface from "@/definitions/store/movies.definitions";
+import { movieListFilterCb, movieListSortCb } from "@/pages/Main.utils";
 
 const getters = {
-  getAllMovies: (state: RootStateInterface) => state.movies,
-  getMovieById: (state: RootStateInterface) => (inputId: number) =>
+  getAllMovies: (state: MoviesStateInterface) => state.movies,
+  getMovieById: (state: MoviesStateInterface) => (inputId: number) =>
     state.movies.filter((movieItem) => movieItem.id === inputId),
-  getFilteredMovieList:
-    (state: RootStateInterface) =>
-    ({ searchBy, searchString }: FilterByInterface) =>
-      state.movies.filter(movieListFilterCb(searchBy, searchString)),
+  filteredAndSortedList: (
+    state: MoviesStateInterface,
+    getters: any,
+    rootState: any
+  ) =>
+    state.movies
+      .filter(
+        movieListFilterCb(
+          rootState.controls.searchBy,
+          rootState.controls.searchString
+        )
+      )
+      .sort(movieListSortCb(rootState.controls.sortBy)),
 };
 
 export default getters;

@@ -1,7 +1,7 @@
-import RootStateInterface from "@/definitions/store/root.definitions";
+import MoviesStateInterface from "@/definitions/store/movies.definitions";
 import { mockMovieDataList } from "../../../mocks/movieData.mock";
 
-const state: RootStateInterface = {
+const state: MoviesStateInterface = {
   movies: mockMovieDataList,
   selectedMovie: null,
 };

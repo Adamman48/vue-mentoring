@@ -1,1 +1,5 @@
 export const SELECT_MOVIE = "SELECT_MOVIE";
+
+export const SET_SORT_BY = "SET_SORT_BY";
+export const SET_SEARCH_BY = "SET_SEARCH_BY";
+export const UPDATE_SEARCH_STRING = "UPDATE_SEARCH_STRING";

@@ -1,4 +1,7 @@
-import { SearchToggleEnum } from "@/definitions/MainPage.definitions";
+import {
+  SearchToggleEnum,
+  SortToggleEnum,
+} from "@/definitions/MainPage.definitions";
 import { MovieItemInterface } from "@/definitions/MyMovieItem.definitions";
 
 export function movieListFilterCb(
@@ -17,6 +20,15 @@ export function movieListFilterCb(
       result = genreList.some(compareAgainstFilteredList(filteredGenreList));
     }
     return result;
+  };
+}
+
+export function movieListSortCb(sortBy: SortToggleEnum) {
+  return function testMovieItem(
+    itemA: MovieItemInterface,
+    itemB: MovieItemInterface
+  ) {
+    return itemB[sortBy] - itemA[sortBy];
   };
 }
 
