@@ -1,12 +1,14 @@
 <template>
   <button :class="classObj" @click="onClick">
-    {{ $filters.uppercase(innerText) }}
+    {{ typeof innerText === "string" ? innerText.toUpperCase() : null }}
     <template v-if="Array.isArray(innerText)">
       <span
         v-for="(item, index) in innerText"
         :key="`toggle-item-${index}`"
         :class="{ selected: item.value === selected }"
-        >{{ $filters.uppercase(item.label) }}</span
+        >{{
+          typeof item.label === "string" ? item.label.toUpperCase() : null
+        }}</span
       >
     </template>
   </button>
