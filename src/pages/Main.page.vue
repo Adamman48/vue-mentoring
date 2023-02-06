@@ -5,7 +5,7 @@
     <div class="logo">
       <MyLogo :size="SizeEnum.S" />
       <span
-        class="material-icons"
+        class="material-icons search-icon"
         v-if="selectedMovie"
         @click="handleMovieSelection(null)"
         >search</span
