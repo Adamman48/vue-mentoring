@@ -13,8 +13,6 @@ export const mockMovieDataList: MovieItemInterface[] = [
     vote_average: 8.6,
     vote_count: 20,
     id: 1001,
-    revenue: 1000000000,
-    budget: 1000000,
   },
   {
     genres: ["action", "adventure", "fantasy"],
@@ -28,8 +26,6 @@ export const mockMovieDataList: MovieItemInterface[] = [
     vote_average: 8.7,
     vote_count: 20,
     id: 1002,
-    revenue: 1000000000,
-    budget: 1000000,
   },
   {
     genres: ["action", "adventure", "fantasy"],
@@ -43,8 +39,6 @@ export const mockMovieDataList: MovieItemInterface[] = [
     vote_average: 8.3,
     vote_count: 20,
     id: 1003,
-    revenue: 1000000000,
-    budget: 1000000,
   },
   {
     genres: ["action", "adventure", "fantasy"],
@@ -58,8 +52,6 @@ export const mockMovieDataList: MovieItemInterface[] = [
     vote_average: 6.5,
     vote_count: 20,
     id: 1004,
-    revenue: 1000000000,
-    budget: 1000000,
   },
   {
     genres: ["action", "adventure", "fantasy", "romance"],
@@ -73,8 +65,6 @@ export const mockMovieDataList: MovieItemInterface[] = [
     vote_average: 6.6,
     vote_count: 20,
     id: 1005,
-    revenue: 1000000000,
-    budget: 1000000,
   },
   {
     genres: ["action", "adventure", "fantasy"],
@@ -88,7 +78,5 @@ export const mockMovieDataList: MovieItemInterface[] = [
     vote_average: 7.6,
     vote_count: 20,
     id: 1006,
-    revenue: 1000000000,
-    budget: 1000000,
   },
 ];

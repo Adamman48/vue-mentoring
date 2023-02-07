@@ -118,6 +118,7 @@ export default defineComponent({
       setSortBy: "controls/setSortBy",
       setSearchBy: "controls/setSearchBy",
       updateSearchValue: "controls/updateSearchValue",
+      fetchMovies: "movies/fetchMovies",
     }),
     handleSearch(): void {
       this.filteredMovieList = this.filteredAndSortedList;
@@ -135,10 +136,10 @@ export default defineComponent({
       this.filteredMovieList = this.filteredAndSortedList;
     },
   },
-  created() {
-    this.setSearchBy(SearchToggleEnum.TITLE);
-    this.setSortBy(SortToggleEnum.REL_DATE);
-    this.filteredMovieList = this.filteredAndSortedList;
+  async created() {
+    await this.fetchMovies();
+    await this.setSearchBy(SearchToggleEnum.TITLE);
+    await this.setSortBy(SortToggleEnum.REL_DATE);
   },
   mixins: [enums],
 });

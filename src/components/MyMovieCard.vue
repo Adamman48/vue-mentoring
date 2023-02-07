@@ -1,9 +1,6 @@
 <template>
   <div class="item-wrapper" @click="$emit('movieSelected', movieData.id)">
-    <img
-      :src="getImgUrl(movieData.poster_path)"
-      :alt="`${movieData.title} image`"
-    />
+    <img :src="movieData.poster_path" :alt="`${movieData.title} image`" />
     <div class="details">
       <span class="title">{{ movieData.title }}</span>
       <span class="release-date">{{ movieData.release_date }}</span>

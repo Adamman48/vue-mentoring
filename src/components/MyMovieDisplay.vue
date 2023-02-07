@@ -1,7 +1,7 @@
 <template>
   <div v-if="selectedMovie" class="wrapper">
     <img
-      :src="getImgUrl(selectedMovie.poster_path)"
+      :src="selectedMovie.poster_path"
       :alt="`${selectedMovie.title} poster image`"
     />
     <section class="info-section">

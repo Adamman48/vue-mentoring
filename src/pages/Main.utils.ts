@@ -43,7 +43,7 @@ function filterByTitleString(
 
 function filterGenreListCb(searchString: string) {
   return function testGenreItem(genreItem: string): boolean {
-    return genreItem.includes(searchString.toLowerCase());
+    return genreItem.toLowerCase().includes(searchString.toLowerCase());
   };
 }
 

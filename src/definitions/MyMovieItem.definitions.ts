@@ -9,6 +9,21 @@ export interface MovieItemInterface {
   id: number;
   vote_average: number;
   vote_count: number;
-  budget: number;
-  revenue: number;
+}
+
+export interface RawMovieItemInterface {
+  year: string;
+  genres: string[];
+  ratings: number[];
+  poster: string;
+  contentRating: number;
+  duration: string;
+  releaseDate: string;
+  averageRating: number;
+  storyline: string;
+  actors: string[];
+  imdbRating: number;
+  posterurl: string;
+  id: number;
+  title: string;
 }
