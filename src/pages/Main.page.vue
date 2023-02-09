@@ -27,50 +27,17 @@
     </div>
     <MyMovieDisplay v-else />
   </header>
-  <div class="results-header">
-    <span class="results-total"
-      >{{ filteredMovieList.length }} movie found</span
-    >
-    <span class="results-toggle">
-      <span>SORT BY</span>
-      <MyButton
-        :innerText="[
-          { value: SortToggleEnum.REL_DATE, label: 'release' },
-          { value: SortToggleEnum.RATING, label: 'rating' },
-        ]"
-        @toggle-changed="setSortBy"
-      />
-    </span>
-  </div>
-  <section class="results-section">
-    <div
-      class="results-main"
-      :style="{
-        display: filteredMovieList.length ? 'grid' : 'block',
-        height: filteredMovieList.length ? 'unset' : '16vh',
-      }"
-    >
-      <MyMovieCard
-        v-for="item in filteredMovieList"
-        :movieData="item"
-        :key="`movie-${item.title}`"
-        @movie-selected="handleMovieSelection"
-      />
-      <span v-if="!filteredMovieList.length" class="empty-list"
-        >No films found :(</span
-      >
-    </div>
-  </section>
+  <MyMovieList :movie-list="filteredMovieList" />
   <footer>
     <MyLogo :size="SizeEnum.XS" />
   </footer>
 </template>
 
 <script lang="ts">
-import MyMovieCard from "@/components/MyMovieCard.vue";
 import MyButton from "@/components/MyButton.vue";
 import MyLogo from "@/components/MyLogo.vue";
 import MySearch from "@/components/MySearch.vue";
+import MyMovieList from "@/components/MyMovieList.vue";
 import { SizeEnum } from "@/definitions/MyLogo.definitions";
 import { defineComponent } from "vue";
 
@@ -89,8 +56,8 @@ export default defineComponent({
     MyButton,
     MySearch,
     MyLogo,
-    MyMovieCard,
     MyMovieDisplay,
+    MyMovieList,
   },
   data() {
     return {

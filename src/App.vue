@@ -8,7 +8,6 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { mapActions } from "vuex";
 import MainPage from "./pages/Main.page.vue";
 
 export default defineComponent({
