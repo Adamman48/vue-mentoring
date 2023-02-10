@@ -188,54 +188,11 @@ header {
   }
 }
 
-.results-section {
-  height: 90vh;
-  /* should be removed later */
-  display: inline;
-
-  .results-main {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    justify-items: center;
-    padding: 5% 2%;
-  }
-}
-
 .search-toggle {
   font-size: 1.25em;
   font-weight: 500;
   text-align: left;
   margin-left: 6%;
-}
-
-.results-header {
-  height: 10vh;
-  width: 100%;
-  background-color: #555555;
-
-  .results-total {
-    float: left;
-    position: relative;
-    top: 1.2em;
-    font-weight: 700;
-    font-size: 1.25em;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-      Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
-      sans-serif;
-    margin: 0 0 1% 6%;
-    color: white;
-  }
-
-  .results-toggle {
-    float: right;
-    margin: 1% 5% 0 0;
-    color: white;
-  }
-}
-
-.results-main {
-  background-color: #232323;
-  color: #ffffff;
 }
 
 footer {

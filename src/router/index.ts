@@ -7,6 +7,16 @@ const routes = [
     name: "home",
     component: MainPageVue,
   },
+  {
+    path: "/movie",
+    name: "movie",
+    component: {},
+  },
+  {
+    path: "/not-found",
+    name: "not-found",
+    component: {},
+  },
 ];
 
 const router = createRouter({
