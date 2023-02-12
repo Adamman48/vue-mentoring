@@ -1,21 +1,35 @@
 import { createRouter, createWebHistory } from "vue-router";
-import MainPageVue from "@/pages/Main.page.vue";
+import MyMovieDisplayVue from "@/components/MyMovieDisplay.vue";
+import MyMovieListVue from "@/components/MyMovieList.vue";
+import MyNotFoundVue from "@/components/MyNotFound.vue";
+import MySearchSuiteVue from "@/components/MySearchSuite.vue";
 
 const routes = [
   {
     path: "/",
     name: "home",
-    component: MainPageVue,
+    components: {
+      main: MySearchSuiteVue,
+      list: MyMovieListVue,
+    },
   },
   {
-    path: "/movie",
+    path: "/movie/:id",
     name: "movie",
-    component: {},
+    components: {
+      main: MyMovieDisplayVue,
+      list: MyMovieListVue,
+    },
+    props: {
+      main: true,
+    },
   },
   {
     path: "/not-found",
-    name: "not-found",
-    component: {},
+    components: {
+      main: MySearchSuiteVue,
+      list: MyNotFoundVue,
+    },
   },
 ];
 

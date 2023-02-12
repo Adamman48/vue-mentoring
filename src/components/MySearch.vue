@@ -33,11 +33,6 @@ export default defineComponent({
       this.$emit("searchTriggered", this.inputText);
     },
   },
-  watch: {
-    inputText(newText: string) {
-      this.updateSearchValue(newText);
-    },
-  },
   emits: ["searchTriggered"],
 });
 </script>

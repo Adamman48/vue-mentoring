@@ -4,7 +4,9 @@ import { movieListFilterCb, movieListSortCb } from "@/pages/Main.utils";
 const getters = {
   getAllMovies: (state: MoviesStateInterface) => state.movies,
   getMovieById: (state: MoviesStateInterface) => (inputId: number) =>
-    state.movies.filter((movieItem) => movieItem.id === inputId),
+    state.movies.find(
+      (movieItem) => movieItem.id.toString() === inputId.toString()
+    ),
   filteredAndSortedList: (
     state: MoviesStateInterface,
     getters: any,

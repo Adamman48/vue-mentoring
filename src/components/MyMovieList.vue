@@ -1,6 +1,8 @@
 <template>
   <div class="results-header">
-    <span class="results-total">{{ movieList.length }} movie found</span>
+    <span class="results-total"
+      >{{ filteredAndSortedList.length }} movie found</span
+    >
     <span class="results-toggle">
       <span>SORT BY</span>
       <MyButton
@@ -16,29 +18,27 @@
     <div
       class="results-main"
       :style="{
-        display: movieList.length ? 'grid' : 'block',
-        height: movieList.length ? 'unset' : '16vh',
+        display: filteredAndSortedList.length ? 'grid' : 'block',
+        height: filteredAndSortedList.length ? 'unset' : '16vh',
       }"
     >
       <MyMovieCard
-        v-for="item in movieList"
+        v-for="item in filteredAndSortedList"
         :movieData="item"
         :key="`movie-${item.title}`"
         @movie-selected="handleMovieSelection"
       />
-      <span v-if="!movieList.length" class="empty-list">No films found :(</span>
     </div>
   </section>
 </template>
 
 <script lang="ts">
-import { MovieItemInterface } from "@/definitions/MyMovieItem.definitions";
-import { defineComponent, PropType } from "vue";
+import { defineComponent } from "vue";
 import MyButton from "./MyButton.vue";
 import MyMovieCard from "./MyMovieCard.vue";
 import { SortToggleEnum } from "@/definitions/MainPage.definitions";
 import { enums } from "@/mixins/enums.mixin";
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default defineComponent({
   name: "my-movie-list",
@@ -46,21 +46,21 @@ export default defineComponent({
     MyButton,
     MyMovieCard,
   },
-  props: {
-    movieList: {
-      type: Array as PropType<MovieItemInterface[]>,
-      required: true,
-    },
-  },
-  computed: {},
-  methods: {
-    ...mapActions({
-      selectMovie: "movies/selectMovie",
-      setSortBy: "controls/setSortBy",
+  computed: {
+    ...mapGetters({
+      getAllMovies: "movies/getAllMovies",
+      filteredAndSortedList: "movies/filteredAndSortedList",
+      sortBy: "controls/sortBy",
+      searchBy: "controls/searchBy",
     }),
   },
-  handleMovieSelection(movieId: number | null): void {
-    this.selectMovie(movieId);
+  methods: {
+    ...mapActions({
+      setSortBy: "controls/setSortBy",
+    }),
+    handleMovieSelection(movieId: number | null): void {
+      this.$router.push({ name: "movie", params: { id: movieId } });
+    },
   },
   mixins: [enums],
 });
@@ -108,5 +108,12 @@ export default defineComponent({
 .results-main {
   background-color: #232323;
   color: #ffffff;
+}
+
+.empty-list {
+  font-size: 3em;
+  display: block;
+  position: relative;
+  top: 25%;
 }
 </style>
