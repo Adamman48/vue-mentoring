@@ -21,7 +21,7 @@ export default defineComponent({
   display: inline;
 
   .results-main {
-    display: grid;
+    height: 11rem;
     grid-template-columns: repeat(3, 1fr);
     justify-items: center;
     padding: 5% 2%;
