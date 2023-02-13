@@ -110,11 +110,11 @@ header {
   font-family: sans-serif;
   padding-left: 2%;
   color: white;
-  height: 86%;
+  height: 75%;
 
   img {
     float: left;
-    height: 90%;
+    height: 96%;
     max-width: 25vw;
   }
 
@@ -122,6 +122,10 @@ header {
     display: inline-block;
     width: 60vw;
     margin: 5% 5% 5% 1%;
+
+    header {
+      top: 7rem;
+    }
   }
 
   header {
