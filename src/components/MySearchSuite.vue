@@ -10,8 +10,16 @@
         <span>SEARCH BY</span>
         <MyButton
           :innerText="[
-            { value: SearchToggleEnum.TITLE, label: 'title' },
-            { value: SearchToggleEnum.GENRES, label: 'genre' },
+            {
+              value: SearchToggleEnum.TITLE,
+              label: 'title',
+              selected: searchBy === SearchToggleEnum.TITLE,
+            },
+            {
+              value: SearchToggleEnum.GENRES,
+              label: 'genre',
+              selected: searchBy === SearchToggleEnum.GENRES,
+            },
           ]"
           @toggle-changed="setSearchBy"
         />
@@ -40,6 +48,7 @@ export default defineComponent({
   },
   computed: {
     ...mapGetters({
+      searchBy: "controls/searchBy",
       filteredAndSortedList: "movies/filteredAndSortedList",
     }),
   },
@@ -60,6 +69,17 @@ export default defineComponent({
         this.$router.push("/not-found");
       }
     },
+  },
+  created() {
+    if (this.$route.query?.title) {
+      this.setSearchBy(SearchToggleEnum.TITLE);
+      this.updateSearchValue(this.$route.query?.title);
+    } else if (this.$route.query?.genre) {
+      this.setSearchBy(SearchToggleEnum.GENRES);
+      this.updateSearchValue(this.$route.query?.genre);
+    } else {
+      this.setSearchBy(SearchToggleEnum.TITLE);
+    }
   },
   mixins: [enums],
 });

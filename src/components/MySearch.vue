@@ -12,7 +12,6 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { mapActions } from "vuex";
 import MyButton from "./MyButton.vue";
 
 export default defineComponent({
@@ -22,13 +21,10 @@ export default defineComponent({
   },
   data() {
     return {
-      inputText: "",
+      inputText: this.$route.query?.value || "",
     };
   },
   methods: {
-    ...mapActions({
-      updateSearchValue: "controls/updateSearchValue",
-    }),
     handleSearchTrigger() {
       this.$emit("searchTriggered", this.inputText);
     },

@@ -7,8 +7,16 @@
       <span>SORT BY</span>
       <MyButton
         :innerText="[
-          { value: SortToggleEnum.REL_DATE, label: 'release' },
-          { value: SortToggleEnum.RATING, label: 'rating' },
+          {
+            value: SortToggleEnum.REL_DATE,
+            label: 'release',
+            selected: sortBy === SortToggleEnum.REL_DATE,
+          },
+          {
+            value: SortToggleEnum.RATING,
+            label: 'rating',
+            selected: sortBy === SortToggleEnum.RATING,
+          },
         ]"
         @toggle-changed="setSortBy"
       />
@@ -61,6 +69,9 @@ export default defineComponent({
     handleMovieSelection(movieId: number | null): void {
       this.$router.push({ name: "movie", params: { id: movieId } });
     },
+  },
+  created() {
+    this.setSortBy(SortToggleEnum.REL_DATE);
   },
   mixins: [enums],
 });

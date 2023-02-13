@@ -14,10 +14,6 @@ import { SizeEnum } from "@/definitions/MyLogo.definitions";
 import { defineComponent } from "vue";
 
 import { enums } from "@/mixins/enums.mixin";
-import {
-  SearchToggleEnum,
-  SortToggleEnum,
-} from "@/definitions/MainPage.definitions";
 import { mapActions, mapGetters } from "vuex";
 
 export default defineComponent({
@@ -37,15 +33,11 @@ export default defineComponent({
   },
   methods: {
     ...mapActions({
-      setSortBy: "controls/setSortBy",
-      setSearchBy: "controls/setSearchBy",
       fetchMovies: "movies/fetchMovies",
     }),
   },
   async created() {
     await this.fetchMovies();
-    await this.setSearchBy(SearchToggleEnum.TITLE);
-    await this.setSortBy(SortToggleEnum.REL_DATE);
   },
   mixins: [enums],
 });

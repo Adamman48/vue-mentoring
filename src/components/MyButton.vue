@@ -5,7 +5,7 @@
       <span
         v-for="(item, index) in innerText"
         :key="`toggle-item-${index}`"
-        :class="{ selected: item.value === selected }"
+        :class="{ selected: item.selected }"
         >{{
           typeof item.label === "string" ? item.label.toUpperCase() : null
         }}</span
@@ -35,7 +35,7 @@ export default defineComponent({
   data() {
     return {
       selected: Array.isArray(this.innerText)
-        ? this.innerText[0].value
+        ? this.innerText.find((val) => val.selected)?.value
         : this.innerText,
     };
   },

@@ -7,10 +7,17 @@ import MySearchSuiteVue from "@/components/MySearchSuite.vue";
 const routes = [
   {
     path: "/",
+    redirect: "/search",
+  },
+  {
+    path: "/search",
     name: "home",
     components: {
       main: MySearchSuiteVue,
       list: MyMovieListVue,
+    },
+    props: {
+      main: true,
     },
   },
   {
