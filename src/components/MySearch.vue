@@ -1,7 +1,12 @@
 <template>
   <div>
-    <input type="text" placeholder="Type here..." />
-    <MyButton :innerText="'search'" />
+    <input
+      type="text"
+      placeholder="Search"
+      v-model="inputText"
+      @keyup.enter="handleSearchTrigger"
+    />
+    <MyButton :innerText="'search'" @click="handleSearchTrigger" />
   </div>
 </template>
 
@@ -14,6 +19,17 @@ export default defineComponent({
   components: {
     MyButton,
   },
+  data() {
+    return {
+      inputText: this.$route.query?.value || "",
+    };
+  },
+  methods: {
+    handleSearchTrigger() {
+      this.$emit("searchTriggered", this.inputText);
+    },
+  },
+  emits: ["searchTriggered"],
 });
 </script>
 
@@ -24,7 +40,7 @@ div {
 
   input {
     width: 70%;
-    background-color: #2323238b;
+    background-color: #232323c8;
     font-size: inherit;
     color: white;
     padding: 0.6em;
@@ -34,7 +50,7 @@ div {
   }
 
   ::placeholder {
-    color: white;
+    color: #555555;
     opacity: 1;
   }
 

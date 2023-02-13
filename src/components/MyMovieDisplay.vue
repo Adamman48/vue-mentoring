@@ -1,57 +1,131 @@
 <template>
-  <div class="wrapper">
-    <img
-      :src="getImgUrl(movieData.imgUrl)"
-      :alt="`${movieData.title} poster image`"
-    />
-    <section class="info-section">
-      <header>
-        <div>
-          <span class="title">{{ movieData.title }}</span>
-          <span class="rating">{{ movieData.rating }}</span>
+  <header class="header-display">
+    <div class="logo">
+      <MyLogo :size="SizeEnum.S" />
+      <span class="material-icons search-icon" @click="handleMovieSelection()">
+        search
+      </span>
+    </div>
+    <div class="wrapper">
+      <img
+        :src="movieData.poster_path"
+        :alt="`${movieData.title} poster image`"
+      />
+      <section class="info-section">
+        <header>
+          <div>
+            <span class="title">{{ movieData.title }}</span>
+            <span class="rating">{{ movieData.vote_average }}</span>
+          </div>
+          <span class="tag">{{ movieData.tagLine }}</span>
+        </header>
+        <div class="numbers">
+          <span class="release-date">{{ movieData.release_date }}</span>
+          <span class="running-time">{{ movieData.runtime }} min</span>
         </div>
-        <span class="tag">{{ movieData.tag }}</span>
-      </header>
-      <div class="numbers">
-        <span class="release-date">{{ movieData.relDate }}</span>
-        <span class="running-time">{{ movieData.runningTimeInMins }} min</span>
-      </div>
-      <span class="synopsis">{{ movieData.synopsis }}</span>
-    </section>
-  </div>
+        <span class="synopsis">{{ movieData.overview }}</span>
+      </section>
+    </div>
+  </header>
 </template>
 
 <script lang="ts">
-import { MovieItemInterface } from "@/definitions/MyMovieItem.definitions";
 import { imageUtils } from "@/mixins/imageUtils.mixin";
-import { defineComponent, PropType } from "vue";
+import { defineComponent } from "vue";
+import { mapActions, mapGetters } from "vuex";
+import MyLogo from "@/components/MyLogo.vue";
+import { enums } from "@/mixins/enums.mixin";
+import { SizeEnum } from "@/definitions/MyLogo.definitions";
 
 export default defineComponent({
   name: "my-movie-display",
+  components: {
+    MyLogo,
+  },
   props: {
-    movieData: {
-      type: Object as PropType<MovieItemInterface>,
+    id: {
+      type: String,
       required: true,
     },
   },
-  mixins: [imageUtils],
+  computed: {
+    ...mapGetters({
+      getMovieById: "movies/getMovieById",
+    }),
+    movieData() {
+      return this.getMovieById(this.id);
+    },
+  },
+  methods: {
+    ...mapActions({
+      updateSearchValue: "controls/updateSearchValue",
+    }),
+    handleMovieSelection(): void {
+      this.$router.push("/");
+      this.updateSearchValue("");
+    },
+  },
+  mixins: [imageUtils, enums],
 });
 </script>
 
 <style scoped lang="scss">
+.search-icon {
+  z-index: 10;
+}
+
+header {
+  position: absolute;
+  top: 0;
+  z-index: 3;
+  width: 100%;
+  height: 45vh;
+
+  .logo {
+    padding-top: 1%;
+    text-align: left;
+    margin-bottom: 5%;
+    padding-left: 2%;
+
+    div {
+      width: 90%;
+      display: inline-block;
+    }
+
+    span {
+      display: inline-block;
+      width: auto;
+      text-align: center;
+      color: #f65261;
+      font-size: 2em;
+      position: relative;
+      top: 0.4em;
+      margin-left: 3%;
+      cursor: pointer;
+    }
+  }
+}
+
 .wrapper {
   font-family: sans-serif;
+  padding-left: 2%;
+  color: white;
+  height: 75%;
 
   img {
     float: left;
-    height: auto;
+    height: 96%;
     max-width: 25vw;
   }
 
   .info-section {
     display: inline-block;
     width: 60vw;
-    margin: 5%;
+    margin: 5% 5% 5% 1%;
+
+    header {
+      top: 7rem;
+    }
   }
 
   header {
@@ -69,7 +143,8 @@ export default defineComponent({
       padding: 2%;
       font-size: 1.5em;
       color: #a1e66f;
-      border-color: gray;
+      border-color: white;
+      border-width: 0.06em;
     }
 
     .tag {

@@ -5,8 +5,10 @@
       <span
         v-for="(item, index) in innerText"
         :key="`toggle-item-${index}`"
-        :class="{ selected: item === selected }"
-        >{{ item.toUpperCase() }}</span
+        :class="{ selected: item.selected }"
+        >{{
+          typeof item.label === "string" ? item.label.toUpperCase() : null
+        }}</span
       >
     </template>
   </button>
@@ -19,23 +21,21 @@ export default defineComponent({
   name: "my-button",
   props: {
     innerText: {
-      type: [String, Array],
-      required: true,
-      // ? USED TO WORK NOW IT DOESN'T WTF ?
-      /*       validator(value) {
+      required: true /* 
+        validator(value) {
         const isString = typeof value === "string";
         const isTwoMemberStringList =
           Array.isArray(value) &&
           value.every((item) => typeof item === "string") &&
           value.length === 2;
         return isString || isTwoMemberStringList;
-      }, */
+      }, */,
     },
   },
   data() {
     return {
       selected: Array.isArray(this.innerText)
-        ? this.innerText[0]
+        ? this.innerText.find((val) => val.selected)?.value
         : this.innerText,
     };
   },
@@ -56,10 +56,10 @@ export default defineComponent({
        */
       if (Array.isArray(this.innerText)) {
         const toggledValue = this.innerText.find(
-          (val) => val !== this.selected
+          ({ value }) => value !== this.selected
         );
-        this.selected = toggledValue;
-        this.$emit("toggleChanged", toggledValue);
+        this.selected = toggledValue.value;
+        this.$emit("toggleChanged", toggledValue.value);
       } else {
         this.$emit("toggleChanged");
       }
@@ -71,7 +71,7 @@ export default defineComponent({
 
 <style scoped lang="scss">
 button {
-  border: 1px solid #eee;
+  border: none;
   cursor: pointer;
   font-size: inherit;
   border-radius: 5px;
@@ -80,11 +80,12 @@ button {
 }
 
 .toggle-button {
-  padding: 1em 0 1em 0;
-  background-color: #55555577;
+  padding: 0.4em 0;
+  background-color: #232323b3;
 
   span {
-    padding: 1em;
+    padding: 0.4em 1.5em;
+    font-size: inherit;
     &:nth-child(1) {
       border-radius: 5px 0 0 5px;
     }

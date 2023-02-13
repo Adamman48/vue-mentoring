@@ -1,10 +1,10 @@
 <template>
-  <div class="item-wrapper">
-    <img :src="getImgUrl(movieData.imgUrl)" :alt="`${movieData.title} image`" />
+  <div class="item-wrapper" @click="$emit('movieSelected', movieData.id)">
+    <img :src="movieData.poster_path" :alt="`${movieData.title} image`" />
     <div class="details">
       <span class="title">{{ movieData.title }}</span>
-      <span class="release-date">{{ movieData.relDate }}</span>
-      <span class="genre">{{ movieData.genre }}</span>
+      <span class="release-date">{{ movieData.release_date }}</span>
+      <span class="genre">{{ genresString }}</span>
     </div>
   </div>
 </template>
@@ -22,15 +22,23 @@ export default defineComponent({
       required: true,
     },
   },
+  emits: ["movieSelected"],
+  computed: {
+    genresString(): string {
+      const transformedGenreList = this.movieData.genres.map(
+        (genre: string) => genre.charAt(0).toUpperCase() + genre.slice(1)
+      );
+      return transformedGenreList.join(", ");
+    },
+  },
   mixins: [imageUtils],
 });
 </script>
 
 <style scoped lang="scss">
 .item-wrapper {
-  width: 25vw;
-  height: 70vh;
-  margin-bottom: 3em;
+  max-width: 25vw;
+  cursor: pointer;
 
   .details {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -40,6 +48,7 @@ export default defineComponent({
 
     .title {
       font-weight: 700;
+      width: 70%;
     }
 
     .release-date {
@@ -65,7 +74,7 @@ export default defineComponent({
   }
 
   img {
-    height: auto;
+    height: 80%;
     max-width: 25vw;
   }
 }
